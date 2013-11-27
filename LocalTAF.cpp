@@ -19,6 +19,9 @@ extern "C" {          // we need to export the C interface
 		//cout << "DLL!!" << endl;
 		//cout << _file << endl;
 		fstream datei(_file, ios::in);
+		if (!datei.fail())
+		{
+		
 		char zeile[200] = { 0 };
 		//char newline[600] = { 0 };
 		while (datei.getline(zeile, 200))
@@ -27,8 +30,14 @@ extern "C" {          // we need to export the C interface
 			strcat_s(result, 200, zeile);
 		}
 		
-		//cout << "Ausgabe: " << result << endl;
+		cout << "Ausgabe: " << result << endl;
 		return result;
+		}
+		else
+		{
+			cout << "File not found or could not be opened." << endl;
+			return "";
+		}
 	}
 
 #ifdef __cplusplus
