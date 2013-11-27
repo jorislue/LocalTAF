@@ -14,27 +14,20 @@ extern "C" {          // we need to export the C interface
 
 	__declspec(dllexport) char* __cdecl openLocalTAF(char* _file, char* result)
 	{
-		DWORD cchWritten;
-		HANDLE hConout;
-		BOOL fRet;
+		
 
-
-
-
-
-		cout << "DLL!!" << endl;
-
-		cout << _file << endl;
+		//cout << "DLL!!" << endl;
+		//cout << _file << endl;
 		fstream datei(_file, ios::in);
 		char zeile[200] = { 0 };
 		//char newline[600] = { 0 };
 		while (datei.getline(zeile, 200))
 		{
-			cout << zeile << endl;
+			//cout << zeile << endl;
 			strcat_s(result, 200, zeile);
 		}
 		
-		cout << "Ausgabe: " << result << endl;
+		//cout << "Ausgabe: " << result << endl;
 		return result;
 	}
 
