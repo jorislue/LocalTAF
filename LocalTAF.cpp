@@ -12,29 +12,30 @@ using namespace std;
 extern "C" {          // we need to export the C interface
 #endif
 
-	__declspec(dllexport) int __cdecl openLocalTAF(char* a, char* b)
+	__declspec(dllexport) char* __cdecl openLocalTAF(char* _file)
 	{
 		DWORD cchWritten;
 		HANDLE hConout;
 		BOOL fRet;
-		const int numb = 100;
-		char kilo[numb] = "";
-		int max_char = 100;
+
+
+
 
 
 		cout << "DLL!!" << endl;
-		strcat_s(a, numb, b);
-		cout << a << endl;
-		fstream datei(a, ios::in);
-		char zeile[200];
+
+		cout << _file << endl;
+		fstream datei(_file, ios::in);
+		char zeile[200] = { 0 };
+		char newline[600] = { 0 };
 		while (datei.getline(zeile, 200))
 		{
 			cout << zeile << endl;
-
+			strcat_s(newline, 200, zeile);
 		}
 		
-		
-		return 1;
+		cout << "Ausgabe: " << newline << endl;
+		return newline;
 	}
 
 #ifdef __cplusplus
