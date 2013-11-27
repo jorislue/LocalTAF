@@ -12,7 +12,7 @@ using namespace std;
 extern "C" {          // we need to export the C interface
 #endif
 
-	__declspec(dllexport) char* __cdecl openLocalTAF(char* _file)
+	__declspec(dllexport) char* __cdecl openLocalTAF(char* _file, char* result)
 	{
 		DWORD cchWritten;
 		HANDLE hConout;
@@ -27,15 +27,15 @@ extern "C" {          // we need to export the C interface
 		cout << _file << endl;
 		fstream datei(_file, ios::in);
 		char zeile[200] = { 0 };
-		char newline[600] = { 0 };
+		//char newline[600] = { 0 };
 		while (datei.getline(zeile, 200))
 		{
 			cout << zeile << endl;
-			strcat_s(newline, 200, zeile);
+			strcat_s(result, 200, zeile);
 		}
 		
-		cout << "Ausgabe: " << newline << endl;
-		return newline;
+		cout << "Ausgabe: " << result << endl;
+		return result;
 	}
 
 #ifdef __cplusplus
