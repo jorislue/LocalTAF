@@ -27,10 +27,10 @@ extern "C" {          // we need to export the C interface
 		while (datei.getline(zeile, 200))
 		{
 			//cout << zeile << endl;
+			strcat_s(zeile, 200, " ");
 			strcat_s(result, 200, zeile);
 		}
 		
-		cout << "Ausgabe: " << result << endl;
 		return result;
 		}
 		else
